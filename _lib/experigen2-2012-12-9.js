@@ -201,7 +201,7 @@ var timer_maker = function (  ) {
 		str += '<div class="scaleEdgeLabel">' + edgelabels[0] + '</div>';
 		for (var i=0; i<buttons.length; i+=1) {
 			str += '<div class="scalebuttonWrapper">';
-			str += '<input type="' + buttontype + '" value="'+ buttons[i] +'" id="' + Experigen.screen().responses + 'button' + i + '" name="scale'+ Experigen.screen().responses +'" class="scaleButton" onClick="this.disabled=true; this.Experigen.screen().recordResponse(' + Experigen.screen().responses + "," + "'" + buttons[i] + "'" + ');';
+			str += '<input type="' + buttontype + '" value="'+ buttons[i] +'" id="' + Experigen.screen().responses + 'button' + i + '" name="scale'+ Experigen.screen().responses +'" class="scaleButton" onClick="this.disabled=true; Experigen.screen().recordResponse(' + Experigen.screen().responses + "," + "'" + buttons[i] + "'" + ');';
 // Experigen.screen().continueButtonClick(this,{hide:' +  hide + ',disable:' + disable + '});';
 
 			if (obj.rightAnswer) {
