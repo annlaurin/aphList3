@@ -175,13 +175,18 @@ var timer_maker = function (  ) {
 				//   }
 
 					// give focus to the first form object inside, if any
-					$(part).find(':input[type!="hidden"][class!="scaleButton"]').first().focus();
+					$(part).find(':input[type!="hidden"]').second().focus();
 				}
 			}
 		}
 		return true;
 	}
 
+	that.moveFocus = function() {
+		part = "#" + "part" + Experigen.screen().currentPart;
+		b = $(part).find(':input[type!="hidden"][class="scaleButton"]').first();
+		b.focus();
+ 	}
 
 	that.makeScale = function(obj) {
 		Experigen.screen().responses++;
@@ -482,14 +487,14 @@ var timer_maker = function (  ) {
 						id: soundID2,
 						url: soundFile2,
 						autoPlay: false, 
-						autoLoad: true,
+						autoLoad: false,
 						onload:function() {
 						},
 						onfinish:function() {
 							if (advance) {
 								setTimeout(function() {
 									Experigen.screen().advance();
-								}, 4000);
+								}, 6000);
 							}
 						}
 					});
@@ -500,7 +505,7 @@ var timer_maker = function (  ) {
 					if (soundFile2 === "") {
 						setTimeout(function() {
 							Experigen.screen().advance();
-						}, 4000);
+						}, 6000);
 					} else {
 						soundManager.play(soundID2);
 					}
@@ -512,7 +517,7 @@ var timer_maker = function (  ) {
 		str += '<input type="button" ';
 		str += ' id="' + soundID +'"';
 		str += ' value="' + label + '"';
-		str += ' onClick="Experigen.screen().playSound(\'' + soundID + '\',this); document.getElementById(\'' + soundID + '\').style.display=\'none\'; if(Experigen.trackTimes) {Experigen.timeTracker.set_start_time();}" ';
+		str += ' onClick="Experigen.screen().playSound(\'' + soundID + '\',this); document.getElementById(\'' + soundID + '\').style.display=\'none\'; Experigen.screen().moveFocus(); if(Experigen.trackTimes) {Experigen.timeTracker.set_start_time();}" ';
 		str += ' class="soundbutton"'
 		str += '>';
 		return str;
